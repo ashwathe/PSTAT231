@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+output: html_document
+date: "2024-06-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Import raw data
+
+```{r}
+data_raw <- read.csv("../data/spx_raw.csv")
+head(data_raw)
+```
+
+# Select the last 5 years 
+
+```{r}
+data_raw$Date <- as.Date(data_raw$Date)
+data_clean <- data_raw %>% filter(Date >= '2015-11-04')
+head(data_clean)
+```
+
+# Save cleaned dataset
+
+```{r}
+save(data_clean, file = '../data/data_clean.RData')
+```
+
+
